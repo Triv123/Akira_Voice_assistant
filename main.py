@@ -7,6 +7,7 @@ import pygame
 import requests
 from openai import OpenAI
 from gtts import gTTS
+import musicLibrary
 
 
 recognizer = sr.Recognizer()
@@ -17,9 +18,21 @@ def talkAkira(text):
     engine.say(text)
     engine.runAndWait()
 
-def findcommand():
-    pass
-
+def findcommand(c):
+    if "open google" in c.lower():
+        webbrowser.open("https://google.com")
+    elif "open facebook" in c.lower():
+        webbrowser.open("https://facebook.com")
+    elif "open youtube" in c.lower():
+        webbrowser.open("https://youtube.com")
+    elif "open linkedin" in c.lower():
+        webbrowser.open("https://linkedin.com")
+    elif "open x" in c.lower():
+        webbrowser.open_new_tab("https://x.com")
+    elif "play" in c.lower():
+        song = c.lower().split(" ")[1]
+        link=musicLibrary.music[song]
+        webbrowser.open(link)
 
 if __name__ == "__main__":
     talkAkira("Intializing Akira....")
