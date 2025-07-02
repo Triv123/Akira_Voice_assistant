@@ -30,18 +30,23 @@ def findcommand(c):
     elif "open x" in c.lower():
         webbrowser.open_new_tab("https://x.com")
     elif "play" in c.lower():
-        song = c.lower().split(" ")[1]
-        link=musicLibrary.music[song]
-        webbrowser.open(link)
+        song = c.lower().split("play", 1)[1].strip()
+    
+        if song in musicLibrary.music:
+            link = musicLibrary.music[song]
+            webbrowser.open(link)
+        else:
+            talkAkira("Song not found in music library.")
 
 if __name__ == "__main__":
     talkAkira("Intializing Akira....")
     r =sr.Recognizer()
 
-while True:
-    with sr.Microphone() as command_source:
-        r.adjust_for_ambient_noise(command_source,duration=5)
-        talkAkira("Listening Command...")
+
+with sr.Microphone() as command_source:
+    r.adjust_for_ambient_noise(command_source,duration=1)
+    talkAkira("Listening Command...")
+    while True:
         try:
             cmd_audio = r.listen(command_source,None,phrase_time_limit=10)
             command= r.recognize_google(cmd_audio)
@@ -57,8 +62,8 @@ while True:
                 except Exception as e:
                     talkAkira("Sorry,This feature is not yet available Try another command.")
 
-        except sr.WaitTimeoutError:
-            talkAkira("I didn't hear anything. Please say a command.")
+        # except sr.WaitTimeoutError:
+        #     talkAkira("I didn't hear anything. Please say a command.")
         except sr.UnknownValueError:
             talkAkira("Please repeat")
         except sr.RequestError as e:
