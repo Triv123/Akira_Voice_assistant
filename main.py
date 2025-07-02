@@ -7,12 +7,38 @@ import pygame
 import requests
 from openai import OpenAI
 from gtts import gTTS
+from newsapi import NewsApiClient
+from dotenv import load_dotenv
 import musicLibrary
 
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
 engine.setProperty('rate',150)
+load_dotenv()
+
+def news_headlines():
+    NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+    url = f"https://newsapi.org/v2/top-headlines?sources=bbc-news,cnn&pageSize=5&apiKey={NEWS_API_KEY}"
+
+
+    r = requests.get(url)
+    print("Status Code:", r.status_code)
+
+    if r.status_code == 200:
+        data = r.json()
+        print("Full response:", data)  # <--- this will help you debug
+
+        articles = data.get("articles", [])
+        if articles:
+            talkAkira("Here are the top news headlines.")
+            for i, article in enumerate(articles, 1):
+                talkAkira(f"Headline {i}: {article['title']}")
+        else:
+            talkAkira("No news articles found.")
+    else:
+        talkAkira("Failed to fetch the news.")
+
 
 def talkAkira(text):
     engine.say(text)
@@ -37,6 +63,10 @@ def findcommand(c):
             webbrowser.open(link)
         else:
             talkAkira("Song not found in music library.")
+    elif "news" or "headlines" in c:
+        news_headlines()
+    else:
+        
 
 if __name__ == "__main__":
     talkAkira("Intializing Akira....")
