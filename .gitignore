@@ -16,3 +16,5 @@ Thumbs.db  # Windows
 *.log
 
 pip-wheel-metadata/
+
+.env/
