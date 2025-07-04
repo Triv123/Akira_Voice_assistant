@@ -1,11 +1,9 @@
 import webbrowser
 import speech_recognition as sr
 import pyttsx3
-import pyaudio
 import os
-import pygame
 import requests
-from openai import OpenAI
+from chatgpt import aiProcess
 from gtts import gTTS
 from newsapi import NewsApiClient
 from dotenv import load_dotenv
@@ -63,10 +61,12 @@ def findcommand(c):
             webbrowser.open(link)
         else:
             talkAkira("Song not found in music library.")
-    elif "news" or "headlines" in c:
+    elif "news" in c.lower() or "headlines" in c.lower():
         news_headlines()
     else:
-        
+        output= aiProcess(c)
+        print(f"output:{output}")
+        talkAkira(output)
 
 if __name__ == "__main__":
     talkAkira("Intializing Akira....")
