@@ -30,12 +30,14 @@ Akira is a Python-based voice assistant inspired by virtual assistants like Alex
 
 ## 🔧 Installation
 
-```bash
+
 git clone https://github.com/your-username/akira-voice-assistant.git
 cd akira-voice-assistant
 python -m venv venv
 venv\Scripts\activate    # (Windows)
 pip install -r requirements.txt
+
+
 
 
 ## 🗝️ Setup
@@ -49,7 +51,7 @@ NEWS_API_KEY=your_newsapi_key
 
 Add songs to your custom musicLibrary.py dictionary.
 
-🗣️ How to Use
+## 🗣️ How to Use
 
 Just run:
 
@@ -62,7 +64,7 @@ Speak commands like:
 "Read news"
 
 
-📂 Folder Structure
+## 📂 Folder Structure
 
 Akira_Voice_assistant/
 │
@@ -77,28 +79,19 @@ Akira_Voice_assistant/
 
 
 
-🛡 License
+## 🛡 License
 This project is licensed under the MIT License.
 
-🤝 Contributions
+## 🤝 Contributions
 Pull requests are welcome! Feel free to fork and improve the project.
 
 
-🌟 Star This Repo
+## 🌟 Star This Repo
 If you like this project, please consider starring ⭐ it on GitHub!
 
-yaml
-Copy
-Edit
 
 ---
 
-✅ You can copy this and paste it into your `README.md` file.
-
-Let me know if you want to add:
-- Images or GIFs of Akira running
-- A logo or banner
-- Instructions for macOS/Linux
 
 I can help you polish it even more!
 
